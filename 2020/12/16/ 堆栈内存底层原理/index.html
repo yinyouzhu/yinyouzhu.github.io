@@ -472,6 +472,9 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
 
         
 
@@ -482,10 +485,45 @@
 <h3 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h3><blockquote>
 <p>堆内存存储的是引用数据类型  栈内存存储的是基本数据类型</p>
 </blockquote>
-<h3 id="名词解释-amp-执行过程"><a href="#名词解释-amp-执行过程" class="headerlink" title="名词解释&amp;执行过程"></a>名词解释&amp;执行过程</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">1. ECStack: JS想要执行代码，一定会开辟一个执行栈，也叫栈内存，专业名词，ECStack</span><br><span class="line"></span><br><span class="line">EC(G): 创建全局执行上下文EC(G),某个域下的代码执行都有自己的执行上下文，全局EC(G) </span><br><span class="line"></span><br><span class="line">2. 把创建的EC执行上下文，压缩到栈中执行(进栈),执行完有的上下文就没有用了，这个时候出栈，有的还要用，会把其压缩到栈底(闭包) </span><br><span class="line"></span><br><span class="line">3. GO(golbal object)全局对象，在浏览器端(非node)，会把全局对象赋值给window，window指向GO， window &#x3D; &#123;xxxx:xxxx&#125; </span><br><span class="line"></span><br><span class="line">4. VO(Varibal object)变量对象：在当前上下文中，用来存放创建的变量和值的地方(每一个执行上下文中都会有一个自己的变量对象，函数私有上下文中叫做AO，但也是变量对象)，函数执行形成的变量对象是AO，全局执行形成的变量对象叫VO </span><br><span class="line"></span><br><span class="line">基本数据类型创建变量过程</span><br><span class="line">例如 var a &#x3D; 12 (基本数据类型都是直接存储到栈内存中) </span><br><span class="line">1. 创建值，存储到栈内存中 -&gt; 创建12，并且存储到栈内存中</span><br><span class="line">2. 声明变量   -&gt; 声明变量a </span><br><span class="line">3. 让变量和值关联起来(赋值) -&gt;  a &#x3D; 12  </span><br><span class="line"></span><br><span class="line">引用数据类型创建过程</span><br><span class="line">如 var a &#x3D;&#123;name:&#39;小明&#39;&#125; </span><br><span class="line">1. 开辟一个堆内存，并且有一个16进制的内存地址   </span><br><span class="line">2. 把键值对存储到开辟的堆内存中 </span><br><span class="line">3. 将堆内存的地址存放到栈内存中，供变量调用(关联) </span><br><span class="line">4. 创建变量 </span><br></pre></td></tr></table></figure>
+<h3 id="名词解释-amp-执行过程"><a href="#名词解释-amp-执行过程" class="headerlink" title="名词解释&amp;执行过程"></a>名词解释&amp;执行过程</h3><pre class="line-numbers language-none"><code class="language-none">1. ECStack: JS想要执行代码，一定会开辟一个执行栈，也叫栈内存，专业名词，ECStack
 
-<h3 id="例"><a href="#例" class="headerlink" title="例"></a>例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">var obj &#x3D; &#123;</span><br><span class="line">    name: &#39;测试&#39;,</span><br><span class="line">    fn:(function (x) &#123;</span><br><span class="line">        return x + 10;</span><br><span class="line">    &#125;)(obj.name)</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">运行结果为报错，原因如下</span><br><span class="line">首先我们根据引用数据类型创建过程来分析报错原因</span><br><span class="line">1. 创建一个堆内存，并且有一个16进制的内存地址</span><br><span class="line">2. 把键值对存储到堆内存中  name:&#39;测试&#39;</span><br><span class="line">3. 将创建好的堆内存地址存储到栈内存中</span><br><span class="line">因为这个是一个自执行函数，所以是需要把obj.name的值当作实参传进来，但是因为堆内存中的信息还没有存储完成，obj和堆还没有建立关联，此时的obj是undefined，所以不能做成员访问</span><br></pre></td></tr></table></figure>
-<h3 id="浏览器的垃圾回收机制"><a href="#浏览器的垃圾回收机制" class="headerlink" title="浏览器的垃圾回收机制"></a>浏览器的垃圾回收机制</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">谷歌： 浏览器会在空闲的时候,把所有不被占用的堆内存，进行释放和销毁 </span><br><span class="line"></span><br><span class="line">IE：当前堆被占用一次，记数字1，再被占用一次，数字再累加1，如取消占用，则数字减1，直到减到0为止</span><br></pre></td></tr></table></figure>
+EC(G): 创建全局执行上下文EC(G),某个域下的代码执行都有自己的执行上下文，全局EC(G) 
+
+2. 把创建的EC执行上下文，压缩到栈中执行(进栈),执行完有的上下文就没有用了，这个时候出栈，有的还要用，会把其压缩到栈底(闭包) 
+
+3. GO(golbal object)全局对象，在浏览器端(非node)，会把全局对象赋值给window，window指向GO， window &#x3D; &#123;xxxx:xxxx&#125; 
+
+4. VO(Varibal object)变量对象：在当前上下文中，用来存放创建的变量和值的地方(每一个执行上下文中都会有一个自己的变量对象，函数私有上下文中叫做AO，但也是变量对象)，函数执行形成的变量对象是AO，全局执行形成的变量对象叫VO 
+
+基本数据类型创建变量过程
+例如 var a &#x3D; 12 (基本数据类型都是直接存储到栈内存中) 
+1. 创建值，存储到栈内存中 -&gt; 创建12，并且存储到栈内存中
+2. 声明变量   -&gt; 声明变量a 
+3. 让变量和值关联起来(赋值) -&gt;  a &#x3D; 12  
+
+引用数据类型创建过程
+如 var a &#x3D;&#123;name:&#39;小明&#39;&#125; 
+1. 开辟一个堆内存，并且有一个16进制的内存地址   
+2. 把键值对存储到开辟的堆内存中 
+3. 将堆内存的地址存放到栈内存中，供变量调用(关联) 
+4. 创建变量 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="例"><a href="#例" class="headerlink" title="例"></a>例</h3><pre class="line-numbers language-none"><code class="language-none">var obj &#x3D; &#123;
+    name: &#39;测试&#39;,
+    fn:(function (x) &#123;
+        return x + 10;
+    &#125;)(obj.name)
+&#125;;
+
+运行结果为报错，原因如下
+首先我们根据引用数据类型创建过程来分析报错原因
+1. 创建一个堆内存，并且有一个16进制的内存地址
+2. 把键值对存储到堆内存中  name:&#39;测试&#39;
+3. 将创建好的堆内存地址存储到栈内存中
+因为这个是一个自执行函数，所以是需要把obj.name的值当作实参传进来，但是因为堆内存中的信息还没有存储完成，obj和堆还没有建立关联，此时的obj是undefined，所以不能做成员访问<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="浏览器的垃圾回收机制"><a href="#浏览器的垃圾回收机制" class="headerlink" title="浏览器的垃圾回收机制"></a>浏览器的垃圾回收机制</h3><pre class="line-numbers language-none"><code class="language-none">谷歌： 浏览器会在空闲的时候,把所有不被占用的堆内存，进行释放和销毁 
+
+IE：当前堆被占用一次，记数字1，再被占用一次，数字再累加1，如取消占用，则数字减1，直到减到0为止<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
                 
             </div>
             <hr/>
