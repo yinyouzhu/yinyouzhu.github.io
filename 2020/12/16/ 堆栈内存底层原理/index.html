@@ -445,22 +445,22 @@
 <span class="token number">3.</span> <span class="token function">将堆内存的地址存放到栈内存中，供变量调用</span><span class="token punctuation">(</span>关联<span class="token punctuation">)</span> 
 <span class="token number">4.</span> 创建变量 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h3 id="例"><a href="#例" class="headerlink" title="例"></a>例</h3><pre class="line-numbers language-none"><code class="language-none">var obj &#x3D; &#123;
-    name: &#39;测试&#39;,
-    fn:(function (x) &#123;
-        return x + 10;
-    &#125;)(obj.name)
-&#125;;
+<h3 id="例"><a href="#例" class="headerlink" title="例"></a>例</h3><pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">var</span> obj <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+    name<span class="token operator">:</span> <span class="token string">'测试'</span><span class="token punctuation">,</span>
+    fn<span class="token operator">:</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">x</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> x <span class="token operator">+</span> <span class="token number">10</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">(</span>obj<span class="token punctuation">.</span>name<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
 
 运行结果为报错，原因如下
 首先我们根据引用数据类型创建过程来分析报错原因
-1. 创建一个堆内存，并且有一个16进制的内存地址
-2. 把键值对存储到堆内存中  name:&#39;测试&#39;
-3. 将创建好的堆内存地址存储到栈内存中
-因为这个是一个自执行函数，所以是需要把obj.name的值当作实参传进来，但是因为堆内存中的信息还没有存储完成，obj和堆还没有建立关联，此时的obj是undefined，所以不能做成员访问<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="浏览器的垃圾回收机制"><a href="#浏览器的垃圾回收机制" class="headerlink" title="浏览器的垃圾回收机制"></a>浏览器的垃圾回收机制</h3><pre class="line-numbers language-none"><code class="language-none">谷歌： 浏览器会在空闲的时候,把所有不被占用的堆内存，进行释放和销毁 
+<span class="token number">1.</span> 创建一个堆内存，并且有一个<span class="token number">16</span>进制的内存地址
+<span class="token number">2.</span> 把键值对存储到堆内存中  name<span class="token operator">:</span><span class="token string">'测试'</span>
+<span class="token number">3.</span> 将创建好的堆内存地址存储到栈内存中
+因为这个是一个自执行函数，所以是需要把obj<span class="token punctuation">.</span>name的值当作实参传进来，但是因为堆内存中的信息还没有存储完成，obj和堆还没有建立关联，此时的obj是<span class="token keyword">undefined</span>，所以不能做成员访问<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="浏览器的垃圾回收机制"><a href="#浏览器的垃圾回收机制" class="headerlink" title="浏览器的垃圾回收机制"></a>浏览器的垃圾回收机制</h3><pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">谷歌： 浏览器会在空闲的时候<span class="token punctuation">,</span>把所有不被占用的堆内存，进行释放和销毁 
 
-IE：当前堆被占用一次，记数字1，再被占用一次，数字再累加1，如取消占用，则数字减1，直到减到0为止<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<span class="token constant">IE</span>：当前堆被占用一次，记数字<span class="token number">1</span>，再被占用一次，数字再累加<span class="token number">1</span>，如取消占用，则数字减<span class="token number">1</span>，直到减到<span class="token number">0</span>为止<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
                 
             </div>
             <hr/>

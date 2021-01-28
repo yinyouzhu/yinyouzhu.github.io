@@ -423,51 +423,51 @@
 <blockquote>
 <p>首先需要说明的是，JS中的数据类型是分为基本数据类型和引用数据类型,其中，基本数据类型也可以称为值类型。</p>
 </blockquote>
-<h3 id="基本数据类型（值类型）"><a href="#基本数据类型（值类型）" class="headerlink" title="基本数据类型（值类型）"></a>基本数据类型（值类型）</h3><h4 id="Number-数字"><a href="#Number-数字" class="headerlink" title="Number(数字)"></a>Number(数字)</h4><pre class="line-numbers language-none"><code class="language-none">NaN是一种特殊的数字类型，NaN和谁都不相等，包括他自己。需要用isNaN( )方法检测,如果是数字则返回false，非数字返回true
-isNaN(123)   --&gt;  false
-isNaN(&#39;test&#39;)  --&gt;  true
-isNaN(undefined)  --&gt; true
-isNaN(NaN)   ---&gt; true
-isNaN(null)  --&gt; false<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<pre class="line-numbers language-none"><code class="language-none">把其他的数据类型转换为number的时候，如果不能转化，则返回NaN(使用number()进行隐式转换)
-Number(&#39;123&#39;)  --&gt;  123
-Number(&#39;test&#39;)  --&gt;  NaN
-Number(NaN)   --&gt;  NaN
-Number(&#39;999 888&#39;)  --&gt; NaN 因为999和888之间有一个空格，所以无法转化
-特殊 Number(&#39;&#39;) --&gt; 0 --&gt; false<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<pre class="line-numbers language-none"><code class="language-none">isNaN检测机制
+<h3 id="基本数据类型（值类型）"><a href="#基本数据类型（值类型）" class="headerlink" title="基本数据类型（值类型）"></a>基本数据类型（值类型）</h3><h4 id="Number-数字"><a href="#Number-数字" class="headerlink" title="Number(数字)"></a>Number(数字)</h4><pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token function">NaN是一种特殊的数字类型，NaN和谁都不相等，包括他自己。需要用isNaN</span><span class="token punctuation">(</span> <span class="token punctuation">)</span>方法检测<span class="token punctuation">,</span>如果是数字则返回<span class="token boolean">false</span>，非数字返回<span class="token boolean">true</span>
+<span class="token function">isNaN</span><span class="token punctuation">(</span><span class="token number">123</span><span class="token punctuation">)</span>   <span class="token operator">--</span><span class="token operator">></span>  <span class="token boolean">false</span>
+<span class="token function">isNaN</span><span class="token punctuation">(</span><span class="token string">'test'</span><span class="token punctuation">)</span>  <span class="token operator">--</span><span class="token operator">></span>  <span class="token boolean">true</span>
+<span class="token function">isNaN</span><span class="token punctuation">(</span><span class="token keyword">undefined</span><span class="token punctuation">)</span>  <span class="token operator">--</span><span class="token operator">></span> <span class="token boolean">true</span>
+<span class="token function">isNaN</span><span class="token punctuation">(</span><span class="token number">NaN</span><span class="token punctuation">)</span>   <span class="token operator">--</span><span class="token operator">-</span><span class="token operator">></span> <span class="token boolean">true</span>
+<span class="token function">isNaN</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span>  <span class="token operator">--</span><span class="token operator">></span> <span class="token boolean">false</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token function">把其他的数据类型转换为number的时候，如果不能转化，则返回NaN</span><span class="token punctuation">(</span><span class="token function">使用number</span><span class="token punctuation">(</span><span class="token punctuation">)</span>进行隐式转换<span class="token punctuation">)</span>
+<span class="token function">Number</span><span class="token punctuation">(</span><span class="token string">'123'</span><span class="token punctuation">)</span>  <span class="token operator">--</span><span class="token operator">></span>  <span class="token number">123</span>
+<span class="token function">Number</span><span class="token punctuation">(</span><span class="token string">'test'</span><span class="token punctuation">)</span>  <span class="token operator">--</span><span class="token operator">></span>  <span class="token number">NaN</span>
+<span class="token function">Number</span><span class="token punctuation">(</span><span class="token number">NaN</span><span class="token punctuation">)</span>   <span class="token operator">--</span><span class="token operator">></span>  <span class="token number">NaN</span>
+<span class="token function">Number</span><span class="token punctuation">(</span><span class="token string">'999 888'</span><span class="token punctuation">)</span>  <span class="token operator">--</span><span class="token operator">></span> <span class="token number">NaN</span> 因为<span class="token number">999</span>和<span class="token number">888</span>之间有一个空格，所以无法转化
+特殊 <span class="token function">Number</span><span class="token punctuation">(</span><span class="token string">''</span><span class="token punctuation">)</span> <span class="token operator">--</span><span class="token operator">></span> <span class="token number">0</span> <span class="token operator">--</span><span class="token operator">></span> <span class="token boolean">false</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">isNaN检测机制
 首先检测当前要检测的值是否为数字类型，如果不是，浏览器会默认把值转换为数字类型
 
-1. 其他基本类型转换为数字，直接使用Number()方法
-2. 布尔类型数字转数字 Number(true) --&gt; false
-3. 其他类型 Number(null)  --&gt; false
-           Number(undefined) --&gt; NaN --&gt; false
+<span class="token number">1.</span> <span class="token function">其他基本类型转换为数字，直接使用Number</span><span class="token punctuation">(</span><span class="token punctuation">)</span>方法
+<span class="token number">2.</span> 布尔类型数字转数字 <span class="token function">Number</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token operator">--</span><span class="token operator">></span> <span class="token boolean">false</span>
+<span class="token number">3.</span> 其他类型 <span class="token function">Number</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span>  <span class="token operator">--</span><span class="token operator">></span> <span class="token boolean">false</span>
+           <span class="token function">Number</span><span class="token punctuation">(</span><span class="token keyword">undefined</span><span class="token punctuation">)</span> <span class="token operator">--</span><span class="token operator">></span> <span class="token number">NaN</span> <span class="token operator">--</span><span class="token operator">></span> <span class="token boolean">false</span>
 
-引用类型转换为数字 : 先使用toString()转化成字符串，然后再调用Number()转换为数字
-[12,23] -&gt; toString() -&gt; &#39;12,23&#39; -&gt; Number() -&gt; NaN -&gt; true
-[12] -&gt; toString() -&gt; &#39;12&#39; -&gt; Number() -&gt; false
+引用类型转换为数字 <span class="token operator">:</span> <span class="token function">先使用toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token function">转化成字符串，然后再调用Number</span><span class="token punctuation">(</span><span class="token punctuation">)</span>转换为数字
+<span class="token punctuation">[</span><span class="token number">12</span><span class="token punctuation">,</span><span class="token number">23</span><span class="token punctuation">]</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token string">'12,23'</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token function">Number</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token number">NaN</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token boolean">true</span>
+<span class="token punctuation">[</span><span class="token number">12</span><span class="token punctuation">]</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token string">'12'</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token function">Number</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token boolean">false</span>
 
-对象转化为数字，应该先valueOf,没有原始值再toString变为字符串，最后把字符串转化为数字
+对象转化为数字，应该先valueOf<span class="token punctuation">,</span>没有原始值再toString变为字符串，最后把字符串转化为数字
 
-例:(&#123;name:&#39;xiaoming&#39;&#125;).valueOf() --&gt; &#123;name:&#39;xiaoming&#39;&#125;.toString() --&gt; [object object] 然后Number([Object Object])  --&gt; NaN --&gt; true
-注: 对象&#123;&#125;.toString得到的是[Object Object],调用原型链Object.prototype.toString()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="string-字符串"><a href="#string-字符串" class="headerlink" title="string (字符串)"></a>string (字符串)</h4><pre class="line-numbers language-none"><code class="language-none">字符串字面量用以下形式展现
-&#39;string&#39;
-&quot;string&quot;
-&quot;中文&quot;
-&quot;日本語&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+例<span class="token operator">:</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>name<span class="token operator">:</span><span class="token string">'xiaoming'</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">valueOf</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">--</span><span class="token operator">></span> <span class="token punctuation">&#123;</span>name<span class="token operator">:</span><span class="token string">'xiaoming'</span><span class="token punctuation">&#125;</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">--</span><span class="token operator">></span> <span class="token punctuation">[</span>object object<span class="token punctuation">]</span> <span class="token function">然后Number</span><span class="token punctuation">(</span><span class="token punctuation">[</span>Object Object<span class="token punctuation">]</span><span class="token punctuation">)</span>  <span class="token operator">--</span><span class="token operator">></span> <span class="token number">NaN</span> <span class="token operator">--</span><span class="token operator">></span> <span class="token boolean">true</span>
+注<span class="token operator">:</span> 对象<span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">.</span>toString得到的是<span class="token punctuation">[</span>Object Object<span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token class-name">调用原型链Object</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="string-字符串"><a href="#string-字符串" class="headerlink" title="string (字符串)"></a>string (字符串)</h4><pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">字符串字面量用以下形式展现
+<span class="token string">'string'</span>
+<span class="token string">"string"</span>
+<span class="token string">"中文"</span>
+<span class="token string">"日本語"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h4 id="boolean-（布尔）"><a href="#boolean-（布尔）" class="headerlink" title="boolean （布尔）"></a>boolean （布尔）</h4><blockquote>
 <p>0 null undefined ‘’ NaN 这五个值转化为boolean都是false，其余的都是true</p>
 </blockquote>
-<pre class="line-numbers language-none"><code class="language-none">其他数据类型都可以转化为boolean类型
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">其他数据类型都可以转化为boolean类型
 
 如何转化？
-Boolean(需要转化的值)进行转化
-!!() &#x2F;&#x2F; 两次取反，相当于没取反，等价于Boolean()
-!()  &#x2F;&#x2F; 先转化成boolean类型，然后再取反
-!(0) --&gt;true<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="null-（对象空指针）"><a href="#null-（对象空指针）" class="headerlink" title="null （对象空指针）"></a>null （对象空指针）</h4><pre class="line-numbers language-none"><code class="language-none">对象空指针(意料之中的没有，一般是人为手动，先赋值null，后面再进行赋值操作)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h4 id="undefined-（未定义）"><a href="#undefined-（未定义）" class="headerlink" title="undefined （未定义）"></a>undefined （未定义）</h4><pre class="line-numbers language-none"><code class="language-none">未定义(天生没有，一般都不是人为手动控制，大部分是浏览器自主控制)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<span class="token function">Boolean</span><span class="token punctuation">(</span>需要转化的值<span class="token punctuation">)</span>进行转化
+<span class="token operator">!</span><span class="token operator">!</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// 两次取反，相当于没取反，等价于Boolean()</span>
+<span class="token operator">!</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment">// 先转化成boolean类型，然后再取反</span>
+<span class="token operator">!</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">--</span><span class="token operator">></span><span class="token boolean">true</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="null-（对象空指针）"><a href="#null-（对象空指针）" class="headerlink" title="null （对象空指针）"></a>null （对象空指针）</h4><pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token function">对象空指针</span><span class="token punctuation">(</span>意料之中的没有，一般是人为手动，先赋值<span class="token keyword">null</span>，后面再进行赋值操作<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h4 id="undefined-（未定义）"><a href="#undefined-（未定义）" class="headerlink" title="undefined （未定义）"></a>undefined （未定义）</h4><pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token function">未定义</span><span class="token punctuation">(</span>天生没有，一般都不是人为手动控制，大部分是浏览器自主控制<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <h4 id="symbol-（唯一值）"><a href="#symbol-（唯一值）" class="headerlink" title="symbol （唯一值）"></a>symbol （唯一值）</h4><blockquote>
 <p>应用场景：</p>
 <ol>
@@ -475,23 +475,23 @@ Boolean(需要转化的值)进行转化
 <li>给vuex/redux中做行为派发，统一管理派发的行为标识，标识的值可以是唯一值</li>
 </ol>
 </blockquote>
-<pre class="line-numbers language-none"><code class="language-none">Symbol() &#x3D;&#x3D;&#x3D; Symbol() --&gt; false  
-直接使用Symbol()就可以创建新的Symbol类型 
-var symValue1 &#x3D; Symbol();
-var symValue2 &#x3D; Symbol(&#39;foo&#39;)
-var symValue3 &#x3D; Symbol(&#39;foo&#39;)
-symValue2 &#x3D;&#x3D;&#x3D; symValue3 --&gt; false <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token function">Symbol</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">===</span> <span class="token function">Symbol</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">--</span><span class="token operator">></span> <span class="token boolean">false</span>  
+<span class="token function">直接使用Symbol</span><span class="token punctuation">(</span><span class="token punctuation">)</span>就可以创建新的Symbol类型 
+<span class="token keyword">var</span> symValue1 <span class="token operator">=</span> <span class="token function">Symbol</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> symValue2 <span class="token operator">=</span> <span class="token function">Symbol</span><span class="token punctuation">(</span><span class="token string">'foo'</span><span class="token punctuation">)</span>
+<span class="token keyword">var</span> symValue3 <span class="token operator">=</span> <span class="token function">Symbol</span><span class="token punctuation">(</span><span class="token string">'foo'</span><span class="token punctuation">)</span>
+symValue2 <span class="token operator">===</span> symValue3 <span class="token operator">--</span><span class="token operator">></span> <span class="token boolean">false</span> <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h4 id="bigint-超大数字"><a href="#bigint-超大数字" class="headerlink" title="bigint(超大数字)"></a>bigint(超大数字)</h4><blockquote>
 <p>bigInt是一个内置对象，它提供了一种方法来表示大于2的53次方-1的整数。</p>
 </blockquote>
-<pre class="line-numbers language-none"><code class="language-none">可以用在一个整数字面量后面加n的方式定义一个bigInt,如10n，或者调用函数BigInt() 
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">可以用在一个整数字面量后面加n的方式定义一个bigInt<span class="token punctuation">,</span><span class="token function">如10n，或者调用函数BigInt</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 
 
-let bigIntValue &#x3D; 200315654n
-let alsoHuge &#x3D; BigInt(3365422154);
+<span class="token keyword">let</span> bigIntValue <span class="token operator">=</span> <span class="token number">200315654n</span>
+<span class="token keyword">let</span> alsoHuge <span class="token operator">=</span> <span class="token function">BigInt</span><span class="token punctuation">(</span><span class="token number">3365422154</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-在使用typeof测试时，bigInt对象返回 bigint 
-let value1 &#x3D; BigInt(123);
-typeof(value1)   --&gt; bigint<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+在使用<span class="token keyword">typeof</span>测试时，bigInt对象返回 bigint 
+<span class="token keyword">let</span> value1 <span class="token operator">=</span> <span class="token function">BigInt</span><span class="token punctuation">(</span><span class="token number">123</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">typeof</span><span class="token punctuation">(</span>value1<span class="token punctuation">)</span>   <span class="token operator">--</span><span class="token operator">></span> bigint<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <hr>
 <h3 id="引用数据类型"><a href="#引用数据类型" class="headerlink" title="引用数据类型"></a>引用数据类型</h3><h4 id="对象数据类型-object"><a href="#对象数据类型-object" class="headerlink" title="对象数据类型 (object)"></a>对象数据类型 (object)</h4><p>其中包括：普通对象、实例对象、数据对象、正则对象、prototype原型对象</p>
 <h4 id="函数数据类型-function"><a href="#函数数据类型-function" class="headerlink" title="函数数据类型 (function)"></a>函数数据类型 (function)</h4><p>其中包括：日期对象 </p>
