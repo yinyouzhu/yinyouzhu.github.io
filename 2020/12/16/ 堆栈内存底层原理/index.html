@@ -402,14 +402,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    761
+                    1.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    4 分
                 </div>
                 
 
@@ -471,6 +471,26 @@
 <h3 id="浏览器的垃圾回收机制"><a href="#浏览器的垃圾回收机制" class="headerlink" title="浏览器的垃圾回收机制"></a>浏览器的垃圾回收机制</h3><pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">谷歌： 浏览器会在空闲的时候<span class="token punctuation">,</span>把所有不被占用的堆内存，进行释放和销毁 
 
 <span class="token constant">IE</span>：当前堆被占用一次，记数字<span class="token number">1</span>，再被占用一次，数字再累加<span class="token number">1</span>，如取消占用，则数字减<span class="token number">1</span>，直到减到<span class="token number">0</span>为止<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="引用类型和基本数据类型区别"><a href="#引用类型和基本数据类型区别" class="headerlink" title="引用类型和基本数据类型区别"></a>引用类型和基本数据类型区别</h3><pre class="line-numbers language-javascript" data-language="javascript"><div class="caption"><span>基本数据类型</span></div><code class="language-javascript"><span class="token keyword">let</span> a <span class="token operator">=</span> <span class="token number">15</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> b <span class="token operator">=</span> a<span class="token punctuation">;</span>
+b <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+cosole<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span>b<span class="token punctuation">)</span>  <span class="token comment">// a = 20 b = 10 </span>
+
+那么为什么是这个结果呢？
+因为 a 和 b 都是基本数据类型，是存储在栈内存中的。对于 b 重新赋值，并不会影响到 a 的值。下面的例子会演示引用数据类型<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-javascript" data-language="javascript"><div class="caption"><span>引用数据类型</span></div><code class="language-javascript"><span class="token keyword">let</span> obj <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+    a<span class="token operator">:</span><span class="token number">10</span>
+<span class="token punctuation">&#125;</span>
+<span class="token keyword">let</span> valueA <span class="token operator">=</span> obj<span class="token punctuation">;</span>
+valueA<span class="token punctuation">.</span>a <span class="token operator">=</span> <span class="token number">20</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>value<span class="token punctuation">.</span><span class="token constant">A</span><span class="token punctuation">,</span>obj<span class="token punctuation">.</span>a<span class="token punctuation">)</span> <span class="token comment">// valueA.a = 20  obj.a = 20   </span>
+
+解<span class="token operator">:</span> 
+<span class="token number">1.</span> 首先我们定义了一个obj<span class="token punctuation">,</span>因为obj是个对象，所以是引用数据类型，是存储在堆内存中的。此时这个堆内存会有一个<span class="token number">16</span>进制的内存地址，并且赋值给变量obj，也就是说，此时obj存储的是这个堆内存的内存地址，我们暂且给他定义为<span class="token constant">AAAFFF000</span><span class="token punctuation">,</span> 
+<span class="token number">2.</span> 此时我们又创建了一个valueA <span class="token operator">=</span> obj<span class="token punctuation">,</span> 此时的操作是把之前创建的堆内存地址指向到了valueA的这个变量上，相当于valueA指向的内存地址也是<span class="token constant">AAAFFF000</span> 
+<span class="token number">3.</span> valueA<span class="token punctuation">.</span>a 这一步中，因为valueA指向的是地址为<span class="token constant">AAAFFF000</span>的堆内存，而且这个堆内存中存储了 a<span class="token operator">:</span><span class="token number">10</span> 这个字符串，所以此时的操作就是修改了<span class="token constant">AAAFFF000</span>中的这个属性a，并且重新赋值为<span class="token number">20.</span>  
+<span class="token number">4.</span> 因为obj和avlueA同时指向了<span class="token constant">AAAFFF000</span>这个堆内存。所以此时valueA<span class="token punctuation">.</span>a 和 obj<span class="token punctuation">.</span>a 的值都为<span class="token number">20</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 
             </div>
             <hr/>
@@ -819,7 +839,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">1.6k</span>&nbsp;字
+                class="white-color">2k</span>&nbsp;字
             
             
             
