@@ -402,14 +402,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    410
+                    648
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    2 分
                 </div>
                 
 
@@ -440,8 +440,14 @@
 <span class="token number">3.</span> 进栈执行 
 <span class="token number">4.</span> 代码执行之前还要处理很多事情 
    <span class="token number">1.</span><span class="token function">初始化作用域链</span><span class="token punctuation">(</span>Scope<span class="token operator">-</span>chain<span class="token punctuation">)</span>
-     <span class="token operator">&lt;</span>当前自己上下文，上级上下文<span class="token operator">></span>当前函数形成上下文是创建函数所在的上下文
-     <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+     <span class="token operator">&lt;</span>当前自己上下文，上级上下文<span class="token operator">></span>当前函数形成上下文是创建函数所在的上下文 
+     <span class="token function">后期函数内代码执行，遇到一个变量，我们首先看是否为自己上下文中私有变量</span><span class="token punctuation">(</span>看<span class="token constant">AO</span>中有没有<span class="token punctuation">)</span><span class="token punctuation">,</span>如果是私有变量，则当前变量和外界环境互不干扰，如果不是自己的私有变量，则按照作用域链，向上查找，是否为上级上下文中的私有变量，直到找到为止 
+   <span class="token number">2.</span>初始化<span class="token keyword">this</span>
+   <span class="token number">3.</span>初始化arguments 
+   <span class="token number">4.</span>形参赋值<span class="token operator">:</span>形参都是私有变量，如果不传递实参值，则默认为<span class="token keyword">undefined</span> 
+   <span class="token number">5.</span>变量提升 
+<span class="token number">5.</span> 代码自上而下执行
+<span class="token number">6.</span> <span class="token function">一般情况下，函数执行所形成的上下文，进栈执行完成后，会默认出栈释放掉</span><span class="token punctuation">(</span>私有上下文中存储的私有变量和一些值都会被销毁<span class="token punctuation">)</span><span class="token punctuation">,</span>目的是为了优化内存空间，减少栈内存的消耗，提高页面或者计算的处理速度。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 
             </div>
             <hr/>
@@ -792,7 +798,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">2.4k</span>&nbsp;字
+                class="white-color">2.6k</span>&nbsp;字
             
             
             
