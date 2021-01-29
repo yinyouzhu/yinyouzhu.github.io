@@ -402,7 +402,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    178
+                    410
                 </div>
                 
 
@@ -432,6 +432,16 @@
 <h3 id="函数创建"><a href="#函数创建" class="headerlink" title="函数创建"></a>函数创建</h3><pre class="line-numbers language-javascript" data-language="javascript"><div class="caption"><span>函数创建</span></div><code class="language-javascript"><span class="token number">1.</span> 首先开辟一个堆内存，并且拥有一个<span class="token number">16</span>进制的内存地址<span class="token punctuation">,</span>函数堆内存中存储的是函数体中的“代码字符串” 
 <span class="token number">2.</span> <span class="token function">创建函数的时候，就声明了他的作用域</span><span class="token punctuation">(</span>Scope<span class="token punctuation">)</span><span class="token punctuation">,</span>也就是所在的上下文环境
 <span class="token number">3.</span> <span class="token function">把16进制的地址存放在栈内存中，供变量</span><span class="token punctuation">(</span>函数名<span class="token punctuation">)</span>关联引用<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-javascript" data-language="javascript"><div class="caption"><span>函数执行目的</span></div><code class="language-javascript">把创建函数的时候在堆内存中存储的字符串变为代码执行
+函数执行会形成一个全新的、私有的执行上下文，在私有上下文中，也有存放自己变量的对象，此时对象被成为<span class="token constant">AO</span>，它是<span class="token constant">VO</span>的一种<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-javascript" data-language="javascript"><div class="caption"><span>函数执行</span></div><code class="language-javascript"><span class="token number">1.</span> 形成一个全新的、私有的上下文<span class="token constant">EC</span> 
+<span class="token number">2.</span> 当前私有上下文中，有一个存放本上下文声明变量的地方，<span class="token constant">AO</span>私有变量对象，这里声明的变量都是当前上下文中的私有变量【当前上下文中声明的变量、形参变量】
+<span class="token number">3.</span> 进栈执行 
+<span class="token number">4.</span> 代码执行之前还要处理很多事情 
+   <span class="token number">1.</span><span class="token function">初始化作用域链</span><span class="token punctuation">(</span>Scope<span class="token operator">-</span>chain<span class="token punctuation">)</span>
+     <span class="token operator">&lt;</span>当前自己上下文，上级上下文<span class="token operator">></span>当前函数形成上下文是创建函数所在的上下文
+     <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 
             </div>
             <hr/>
@@ -782,7 +792,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">2.2k</span>&nbsp;字
+                class="white-color">2.4k</span>&nbsp;字
             
             
             
