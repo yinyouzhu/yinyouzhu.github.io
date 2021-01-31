@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="函数底层原理(闭包), 前端，前端笔记 ">
+    <meta name="keywords" content="函数底层原理(作用域+闭包), 前端，前端笔记 ">
     <meta name="description" content="一个前端打工仔的笔记">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>函数底层原理(闭包) | xiong</title>
+    <title>函数底层原理(作用域+闭包) | xiong</title>
     <link rel="icon" type="image/png" href="/sirdaxiong/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/sirdaxiong/libs/awesome/css/all.css">
@@ -252,7 +252,7 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">函数底层原理(闭包)</h1>
+                    <h1 class="description center-align post-title">函数底层原理(作用域+闭包)</h1>
                 </div>
             </div>
         </div>
@@ -402,7 +402,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    651
+                    827
                 </div>
                 
 
@@ -449,7 +449,10 @@
    <span class="token number">5.</span>变量提升 
 <span class="token number">5.</span> 代码自上而下执行
 <span class="token number">6.</span> <span class="token function">一般情况下，函数执行所形成的上下文，进栈执行完成后，会默认出栈释放掉</span><span class="token punctuation">(</span>私有上下文中存储的私有变量和一些值都会被销毁<span class="token punctuation">)</span><span class="token punctuation">,</span>目的是为了优化内存空间，减少栈内存的消耗，提高页面或者计算的处理速度。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<pre class="line-numbers language-javascript" data-language="javascript"><div class="caption"><span>案例</span></div><code class="language-javascript">adfasasdfasdfasdf<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h3><blockquote>
+<p>函数执行形成一个私有上下文，此上下文中的私有变量和上下文以外的变量互不干扰；也就是当前上下文把这些变量保护起来了<br>我们把函数的这种保护机制称之为闭包【闭包不是具体的代码，而是一种机制】<br>市面上很多人人为，形成的私有上下文很容易被释放，这种保护的机制太短了，不是严格意义上的闭包，他们认为只有不会被释放，才是闭包<br>而此时不仅保护了私有变量，而且这些变量和存储的值也不会被释放，保存起来了</p>
+</blockquote>
+
                 
             </div>
             <hr/>
@@ -516,9 +519,9 @@
                     <div class="card-image">
                         
                         
-                        <img src="/sirdaxiong/medias/featureimages/8.jpg" class="responsive-img" alt="函数底层原理(闭包)">
+                        <img src="/sirdaxiong/medias/featureimages/8.jpg" class="responsive-img" alt="函数底层原理(作用域+闭包)">
                         
-                        <span class="card-title">函数底层原理(闭包)</span>
+                        <span class="card-title">函数底层原理(作用域+闭包)</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -800,7 +803,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">2.6k</span>&nbsp;字
+                class="white-color">2.8k</span>&nbsp;字
             
             
             
